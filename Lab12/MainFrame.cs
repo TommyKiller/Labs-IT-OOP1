@@ -133,7 +133,7 @@ namespace Lab12
             {
                 if (isSensetive)
                 {
-                    if (!new Regex(template).IsMatch(filePaths[i]))
+                    if (!new Regex(template).IsMatch(filePaths[i].Split('\\').Last()))
                     {
                         filePaths.Remove(filePaths[i]);
                         i--;
@@ -141,7 +141,7 @@ namespace Lab12
                 }
                 else
                 {
-                    if (!new Regex(template, RegexOptions.IgnoreCase).IsMatch(filePaths[i]))
+                    if (!new Regex(template, RegexOptions.IgnoreCase).IsMatch(filePaths[i].Split('\\').Last()))
                     {
                         filePaths.Remove(filePaths[i]);
                         i--;
