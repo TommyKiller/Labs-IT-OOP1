@@ -2,12 +2,8 @@
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
@@ -145,27 +141,6 @@ namespace Lab12
                     }
                 }
             }
-            /*
-            for (int i = 0; i < filePaths.Count; i++)
-            {
-                if (isSensetive)
-                {
-                    if (!Regex.IsMatch(filePaths[i], template))
-                    {
-                        filePaths.Remove(filePaths[i]);
-                        i--;
-                    }
-                }
-                else
-                {
-                    if (!Regex.IsMatch(filePaths[i], template, RegexOptions.IgnoreCase))
-                    {
-                        filePaths.Remove(filePaths[i]);
-                        i--;
-                    }
-                }
-            }
-            */
         }
 
         private void Output()
