@@ -48,6 +48,7 @@ namespace Lab12
             if (fileNameInput.Text != "")
             {
                 string fileName = String.Format("*{0}*", fileNameInput.Text);
+                ParseTemplate(ref fileName);
                 fileImages = new ImageList();
                 files = new List<string>();
                 try
@@ -84,6 +85,20 @@ namespace Lab12
             IsSensitive = !IsSensitive;
         }
 
+        private void ParseTemplate(ref string template)
+        {
+            char[] operands = new char[] { '*', '?' };
+            string inserts = "[0-9a-zA-Z. -]";
+            for (int i = 0; i < template.Length; i++)
+            {
+                if (operands.Contains(template[i]))
+                {
+                    template = template.Insert(i, inserts);
+                    i += inserts.Length;
+                }
+            }
+        }
+
         private void Search(string currentFolder, string fileName, bool isSensitive)
         {
             List<string> filePaths = new List<string>();
@@ -114,14 +129,6 @@ namespace Lab12
 
         private void FilterFiles(string template, ref List<string> filePaths, bool isSensetive)
         {
-            for (int i = 0; i < template.Length; i++)
-            {
-                if ((template[i] == '*') || (template[i] == '?'))
-                {
-                    template = template.Insert(i, "[a-zA-Z.]");
-                    i += 9;
-                }
-            }
             for (int i = 0; i < filePaths.Count; i++)
             {
                 if (isSensetive)
