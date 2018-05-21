@@ -47,7 +47,7 @@ namespace Lab12
         {
             if (fileNameInput.Text != "")
             {
-                string fileName = String.Format("*{0}*", fileNameInput.Text);
+                string fileName = String.Format("{0}", fileNameInput.Text);
                 ParseTemplate(ref fileName);
                 fileImages = new ImageList();
                 files = new List<string>();
@@ -87,6 +87,7 @@ namespace Lab12
 
         private void ParseTemplate(ref string template)
         {
+            bool isSpecialized = false;
             char[] operands = new char[] { '*', '?' };
             string inserts = "[0-9a-zA-Z. -]";
             for (int i = 0; i < template.Length; i++)
@@ -95,7 +96,18 @@ namespace Lab12
                 {
                     template = template.Insert(i, inserts);
                     i += inserts.Length;
+                    isSpecialized = true;
                 }
+            }
+            if (isSpecialized)
+            {
+                template = template.Insert(0, "^");
+                template += "$";
+            }
+            else
+            {
+                template = template.Insert(0, inserts + "*");
+                template += inserts + "*";
             }
         }
 
